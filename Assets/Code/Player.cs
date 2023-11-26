@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float playerSpeed = 5f;
     private Rigidbody2D playerRB;
     public float playerJumpForce = 5f;
+    private Vector3 startingPosition;
     public bool isGrounded = true;
     public AudioClip winningSound;
     public AudioClip loseSound;
@@ -17,7 +18,12 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
+        playerRB = GetComponent<Rigidbody2D>();
+        startingPosition = playerRB.transform.position;
+        audioSource = GetComponent<AudioSource>();
+        // audioSource.clip = backgroundSound;
+        // audioSource.Play();
+
     }
 
     // Update is called once per frame
@@ -57,23 +63,27 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground") {
             isGrounded = true;
         }
-        if (collision.gameObject.tag == "Enemy") {
-            audioSource = GetComponent<AudioSource>();
-            audioSource.clip = loseSound;
-            audioSource.Play();
-            Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "Win") {
-            audioSource = GetComponent<AudioSource>();
-            audioSource.clip = winningSound;
-            audioSource.Play();
-            Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "Sore") {
-            audioSource = GetComponent<AudioSource>();
-            audioSource.clip = SoreSound;
-            audioSource.Play();
-            Destroy(gameObject);
-        }
+        // if (collision.gameObject.tag == "Monster") {
+        //     audioSource = GetComponent<AudioSource>();
+        //     audioSource.clip = loseSound;
+        //     audioSource.Play();
+        //     Destroy(gameObject);
+        // }
+        // if (collision.gameObject.tag == "Win") {
+        //     audioSource = GetComponent<AudioSource>();
+        //     audioSource.clip = winningSound;
+        //     audioSource.Play();
+        //     Destroy(gameObject);
+        // }
+        // if (collision.gameObject.tag == "Sore") {
+        //     audioSource = GetComponent<AudioSource>();
+        //     audioSource.clip = SoreSound;
+        //     audioSource.Play();
+        //     Destroy(gameObject);
+        // }
+    }
+
+    void OnBecameInvisible() {
+        transform.position = startingPosition;
     }
 }
