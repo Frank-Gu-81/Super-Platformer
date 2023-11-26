@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     public float playerSpeed = 5f;
+    public GameObject Bullet;
     private Rigidbody2D playerRB;
     public float playerJumpForce = 5f;
     private Vector3 startingPosition;
@@ -37,6 +38,9 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded){
             jump();
+        }
+        if (Input.GetKeyDown(KeyCode.Space)){
+            FireBullet();
         }
     }
 
@@ -81,6 +85,12 @@ public class Player : MonoBehaviour
         //     audioSource.Play();
         //     Destroy(gameObject);
         // }
+    }
+
+    void FireBullet() {
+        var bulletPos = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
+        var bullet = Instantiate(Bullet, bulletPos, Quaternion.identity) as GameObject;
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(10, 0, 0);
     }
 
     void OnBecameInvisible() {
