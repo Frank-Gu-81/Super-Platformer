@@ -1,0 +1,8 @@
+/Library
+/Temp
+/Logs
+/.vs
+/obj
+.DS_Store
+./vsconfig
+Assembly-CSharp.csproj
