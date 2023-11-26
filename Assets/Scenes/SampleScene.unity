@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
+  Bullet: {fileID: 5101751748206922308, guid: 6ccc4329507f34c25bc963e27806ef7f, type: 3}
   playerJumpForce: 8
   isGrounded: 1
   winningSound: {fileID: 0}
