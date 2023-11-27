@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class NewBehaviourScript : MonoBehaviour
 {
 
+    // field for corresponding button
     [SerializeField] GameObject menubotton;
 
     public void Pause()
