@@ -27,6 +27,14 @@ public class HealthKeeper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tmp.text = "Health: " + health.ToString();
+        if (health > 0)
+        {
+            tmp.text = "Health: " + health.ToString();
+            tmp.color = Color.red;
+        }
+        if (health == 0) {
+            Time.timeScale = 0f;
+            tmp.text = "You Lose!";
+        }
     }
 }

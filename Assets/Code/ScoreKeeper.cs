@@ -37,9 +37,20 @@ public class ScoreKeeper : MonoBehaviour
         IncreaseScore();
     }
 
+    public void win()
+    {
+        Time.timeScale = 0f;
+        tmp.text = "You Won!";
+        tmp.color = Color.red;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        tmp.text = "Score: " + score.ToString();
+        if (Time.timeScale != 0)
+        {
+            tmp.text = "Score: " + score.ToString();
+        }
+           
     }
 }

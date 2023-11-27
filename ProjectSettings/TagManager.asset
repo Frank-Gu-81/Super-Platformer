@@ -15,6 +15,7 @@ TagManager:
   - SCOREKEEPER
   - TRAP
   - HEALTHKEEPER
+  - GROUND1
   layers:
   - Default
   - TransparentFX

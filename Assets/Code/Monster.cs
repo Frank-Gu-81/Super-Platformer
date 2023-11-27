@@ -7,25 +7,29 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     public float monsterSpeed = 0.5f;
     private Rigidbody2D monsterRB;
-    private Vector3 startingPosition;
-    public AudioClip monsterKilledSound;
+    public AudioSource monsterKilledSound;
     private AudioSource audioSource;
     public ScoreKeeper scoreKeeper;
+    public float patrolRange = 5f; // Distance to patrol
+    public float speed = 2f; // Speed of patrolling
+    private Vector2 startPosition;
+    private float patrolTime;
 
     void Start()
     {
         scoreKeeper = GameObject.FindWithTag("SCOREKEEPER").GetComponent<ScoreKeeper>();
-        monsterRB = GetComponent<Rigidbody2D>();
-        startingPosition = transform.position;
-        monsterRB.freezeRotation = true;
+        startPosition = transform.position;
         audioSource = GetComponent<AudioSource>();
+        monsterRB = GetComponent<Rigidbody2D>();
+        monsterRB.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // make the monster move horizontally between left and right within the screen
-        transform.position = new Vector3(Mathf.PingPong(Time.time * monsterSpeed, 4) - 2, transform.position.y, transform.position.z);
+        patrolTime += Time.deltaTime * speed;
+        float newX = startPosition.x + Mathf.Sin(patrolTime) * patrolRange;
+        transform.position = new Vector2(newX, startPosition.y);
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -34,17 +38,14 @@ public class Monster : MonoBehaviour
             scoreKeeper.IncreaseScore();
         }
         if (collision.gameObject.tag == "Bullet") {
-            audioSource.PlayOneShot(monsterKilledSound);
+            monsterKilledSound.Play();
             scoreKeeper.IncreaseScore();
             Destroy(collision.gameObject);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<Renderer>().enabled = false;
             this.enabled = false;
-            Destroy(gameObject, monsterKilledSound.length);
+            Destroy(gameObject, monsterKilledSound.clip.length);
         }
     }
 
-    void OnBecameInvisible() {
-        transform.position = startingPosition;
-    }
 }

@@ -19,4 +19,21 @@ public class Bullet : MonoBehaviour
     void OnBecameInvisible() {
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "SURPRISE_BOX")
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "GROUND1")
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "ASTEROID")
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
 }

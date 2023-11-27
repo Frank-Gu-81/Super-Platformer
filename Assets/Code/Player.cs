@@ -11,22 +11,19 @@ public class Player : MonoBehaviour
     public float playerJumpForce = 5f;
     private Vector3 startingPosition;
     public bool isGrounded = true;
-    public AudioClip winningSound;
-    public AudioClip loseSound;
-    public AudioClip ScoreSound;
-    public AudioClip bulletSound; 
-    private AudioSource audioSource;
-    public HealthKeeper h;
+    public AudioSource winningSound;
+    public AudioSource loseSound;
+    public AudioSource ScoreSound;
+    public AudioSource MonsterKillSound; 
+    public AudioSource audioSource;
+    public HealthKeeper healthKeeper;
     public ScoreKeeper s;
 
     void Start()
     {
+        healthKeeper = GameObject.FindWithTag("HEALTHKEEPER").GetComponent<HealthKeeper>();
         playerRB = GetComponent<Rigidbody2D>();
         startingPosition = playerRB.transform.position;
-        audioSource = GetComponent<AudioSource>();
-        // audioSource.clip = backgroundSound;
-        // audioSource.Play();
-
     }
 
     // Update is called once per frame
@@ -74,38 +71,31 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "GROUND") {
+        if ((collision.gameObject.tag == "GROUND") | (collision.gameObject.tag == "GROUND1")) {
             isGrounded = true;
         }
         else if (collision.gameObject.tag == "ASTEROID")
         {
-            h.DecreaseHealth();
+            healthKeeper.DecreaseHealth();
             Destroy(collision.gameObject);
         }
-        
         if (collision.gameObject.tag == "Monster") {
-            audioSource = GetComponent<AudioSource>();
-            audioSource.clip = loseSound;
-            audioSource.Play();
-            Destroy(gameObject);
+            healthKeeper.DecreaseHealth();
+            MonsterKillSound.Play();
+            Destroy(collision.gameObject);
             // Lose the game and update Score
         }
-        if (collision.gameObject.tag == "Coin") {
-            audioSource = GetComponent<AudioSource>();
-            audioSource.clip = ScoreSound;
-            audioSource.Play();
-            Destroy(collision.gameObject);
-            // Update Score
+        if ((collision.gameObject.tag == "Teleportal"))
+        {
+            s.win();
         }
     }
 
     void FireBullet() {
-        var bulletPos = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
-        var bullet = Instantiate(Bullet, bulletPos, Quaternion.identity) as GameObject;
-        bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(10, 0, 0);
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = bulletSound;
+        Vector3 bulletPos = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
         audioSource.Play();
+        GameObject bullet = Instantiate(Bullet, bulletPos, Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(10, 0, 0);
     }
 
     void OnBecameInvisible() {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2179229474986023126}
   - component: {fileID: 1812135692912658624}
   - component: {fileID: 3161991581619914709}
+  - component: {fileID: -4171106926584240232}
   m_Layer: 0
   m_Name: asteroid
   m_TagString: ASTEROID
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: ff5c1d2cc4d42b944ade207bb5d5225f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.33654022, b: 0.013082923, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -164,3 +165,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4171106926584240232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284896334484834480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ea1cc0daed1364084fcb549c8f3f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
