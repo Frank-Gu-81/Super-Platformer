@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
     }
 
     void OnBecameInvisible() {
-        transform.position = startingPosition;
+        healthKeeper.Lose();
     }
+
 }

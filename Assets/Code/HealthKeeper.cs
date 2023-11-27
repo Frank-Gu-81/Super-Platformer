@@ -8,6 +8,7 @@ public class HealthKeeper : MonoBehaviour
     public float health;
     public TextMeshProUGUI tmp;
     public AudioSource on_hit;
+    public AudioSource lose;
 
     private void Start()
     {
@@ -24,17 +25,29 @@ public class HealthKeeper : MonoBehaviour
         }
     }
 
+    public void Lose()
+    {
+        lose.Play();
+        health = -1;
+        tmp.text = "You Lose!";
+        Time.timeScale = 0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (health > 0)
         {
             tmp.text = "Health: " + health.ToString();
-            tmp.color = Color.red;
+            if (health < 3)
+            {
+                tmp.color = Color.red;
+            }
         }
-        if (health == 0) {
-            Time.timeScale = 0f;
-            tmp.text = "You Lose!";
+        else if (health == 0) {
+            
+            Lose();
+            health--;
         }
     }
 }

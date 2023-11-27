@@ -29,7 +29,7 @@ public class SurpriceBox : MonoBehaviour
             if (collision.gameObject.tag == "PLAYER")
             {
                 collided = true;
-                spriteRenderer.color = Color.white;
+                spriteRenderer.color = Color.grey;
                 box_audio.Play();
                 scoreKeeper.surprise_box();
             }

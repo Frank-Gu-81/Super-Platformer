@@ -10,6 +10,7 @@ public class ScoreKeeper : MonoBehaviour
     public int score;
     public TextMeshProUGUI tmp;
     public AudioSource coin_collection;
+    public AudioSource win_audio;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class ScoreKeeper : MonoBehaviour
         Time.timeScale = 0f;
         tmp.text = "You Won!";
         tmp.color = Color.red;
+        win_audio.Play();
     }
 
     // Update is called once per frame
