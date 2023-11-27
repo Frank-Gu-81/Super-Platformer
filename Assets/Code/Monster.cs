@@ -8,9 +8,11 @@ public class Monster : MonoBehaviour
     public float monsterSpeed = 0.5f;
     private Rigidbody2D monsterRB;
     private Vector3 startingPosition;
+    public ScoreKeeper scoreKeeper;
 
     void Start()
     {
+        scoreKeeper = GameObject.FindWithTag("SCOREKEEPER").GetComponent<ScoreKeeper>();
         monsterRB = GetComponent<Rigidbody2D>();
         startingPosition = transform.position;
         monsterRB.freezeRotation = true;
@@ -24,11 +26,13 @@ public class Monster : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "PLAYER") {
             Destroy(gameObject);
+            scoreKeeper.IncreaseScore();
         }
         if (collision.gameObject.tag == "Bullet") {
             Destroy(gameObject);
+            scoreKeeper.IncreaseScore();
             Destroy(collision.gameObject);
         }
     }
