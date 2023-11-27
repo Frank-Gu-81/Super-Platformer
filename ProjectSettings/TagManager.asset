@@ -4,8 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - GROUND
+  - COIN
+  - ASTEROID
   - Ground
   - Monster
+  - Bullet
+  - SURPRISE_BOX
+  - PLAYER
+  - SCOREKEEPER
+  - TRAP
+  - HEALTHKEEPER
   layers:
   - Default
   - TransparentFX

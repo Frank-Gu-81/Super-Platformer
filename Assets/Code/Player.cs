@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public AudioClip SoreSound;
     public AudioClip backgroundSound; 
     private AudioSource audioSource;
+    public HealthKeeper h;
+    public ScoreKeeper s;
 
     void Start()
     {
@@ -63,10 +65,25 @@ public class Player : MonoBehaviour
         isGrounded = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "COIN")
+        {
+            s.collect_coin();
+            Destroy(collision.gameObject);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Ground") {
+        if (collision.gameObject.tag == "GROUND") {
             isGrounded = true;
         }
+        else if (collision.gameObject.tag == "ASTEROID")
+        {
+            h.DecreaseHealth();
+            Destroy(collision.gameObject);
+        }
+        
         // if (collision.gameObject.tag == "Monster") {
         //     audioSource = GetComponent<AudioSource>();
         //     audioSource.clip = loseSound;
