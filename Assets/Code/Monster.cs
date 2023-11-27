@@ -8,12 +8,15 @@ public class Monster : MonoBehaviour
     public float monsterSpeed = 0.5f;
     private Rigidbody2D monsterRB;
     private Vector3 startingPosition;
+    public AudioClip monsterKilledSound;
+    private AudioSource audioSource;
 
     void Start()
     {
         monsterRB = GetComponent<Rigidbody2D>();
         startingPosition = transform.position;
         monsterRB.freezeRotation = true;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,8 +31,12 @@ public class Monster : MonoBehaviour
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Bullet") {
-            Destroy(gameObject);
+            audioSource.PlayOneShot(monsterKilledSound);
             Destroy(collision.gameObject);
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+            this.enabled = false;
+            Destroy(gameObject, monsterKilledSound.length);
         }
     }
 

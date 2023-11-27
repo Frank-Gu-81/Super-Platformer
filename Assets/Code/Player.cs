@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public bool isGrounded = true;
     public AudioClip winningSound;
     public AudioClip loseSound;
-    public AudioClip SoreSound;
-    public AudioClip backgroundSound; 
+    public AudioClip ScoreSound;
+    public AudioClip bulletSound; 
     private AudioSource audioSource;
 
     void Start()
@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
     }
 
     void jump() {
-        Debug.Log("Jumping");
         playerRB = GetComponent<Rigidbody2D>();
         playerRB.AddForce(Vector2.up * playerJumpForce, ForceMode2D.Impulse);
         isGrounded = false;
@@ -67,30 +66,29 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground") {
             isGrounded = true;
         }
-        // if (collision.gameObject.tag == "Monster") {
-        //     audioSource = GetComponent<AudioSource>();
-        //     audioSource.clip = loseSound;
-        //     audioSource.Play();
-        //     Destroy(gameObject);
-        // }
-        // if (collision.gameObject.tag == "Win") {
-        //     audioSource = GetComponent<AudioSource>();
-        //     audioSource.clip = winningSound;
-        //     audioSource.Play();
-        //     Destroy(gameObject);
-        // }
-        // if (collision.gameObject.tag == "Sore") {
-        //     audioSource = GetComponent<AudioSource>();
-        //     audioSource.clip = SoreSound;
-        //     audioSource.Play();
-        //     Destroy(gameObject);
-        // }
+        if (collision.gameObject.tag == "Monster") {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.clip = loseSound;
+            audioSource.Play();
+            Destroy(gameObject);
+            // Lose the game and update Score
+        }
+        if (collision.gameObject.tag == "Coin") {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.clip = ScoreSound;
+            audioSource.Play();
+            Destroy(collision.gameObject);
+            // Update Score
+        }
     }
 
     void FireBullet() {
         var bulletPos = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
         var bullet = Instantiate(Bullet, bulletPos, Quaternion.identity) as GameObject;
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(10, 0, 0);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = bulletSound;
+        audioSource.Play();
     }
 
     void OnBecameInvisible() {
