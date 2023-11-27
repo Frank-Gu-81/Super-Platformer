@@ -187,12 +187,12 @@ MonoBehaviour:
     Up Arrow to Jump
 
     Space
-    to Shoot (Not always possible)
+    to Shoot
 
     Be aware of monsters, trap and even asteriods
 
-    Reach
-    final destination and good luck!'
+    Reach final
+    destination and good luck!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -518,6 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menubotton: {fileID: 1467535219}
+  inst: 0
 --- !u!1 &1685530458
 GameObject:
   m_ObjectHideFlags: 0

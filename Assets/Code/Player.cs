@@ -103,7 +103,13 @@ public class Player : MonoBehaviour
     }
 
     void OnBecameInvisible() {
-        healthKeeper.Lose();
+        if (GameObject.FindObjectOfType<MenuControl>())
+        {
+            if (!GameObject.FindObjectOfType<MenuControl>().inst)
+            {
+                healthKeeper.Lose();
+            }
+        }
     }
 
 }

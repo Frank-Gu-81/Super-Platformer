@@ -9,6 +9,7 @@ public class HealthKeeper : MonoBehaviour
     public TextMeshProUGUI tmp;
     public AudioSource on_hit;
     public AudioSource lose;
+    public bool badend = false;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class HealthKeeper : MonoBehaviour
         health = -1;
         tmp.text = "You Lose!";
         Time.timeScale = 0f;
+        badend = true;
     }
 
     // Update is called once per frame

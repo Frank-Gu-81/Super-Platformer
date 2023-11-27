@@ -9,11 +9,24 @@ public class MenuControl : MonoBehaviour
     // field for corresponding button
     [SerializeField] GameObject menubotton;
 
+    public bool inst = false;
 
     public void Pause()
     {
-        menubotton.SetActive(true);
-        Time.timeScale = 0f;
+        if (GameObject.FindObjectOfType<HealthKeeper>())
+        {
+           if (GameObject.FindObjectOfType<ScoreKeeper>())
+           {
+                if (!GameObject.FindObjectOfType<HealthKeeper>().badend)
+                {
+                    if (!GameObject.FindObjectOfType<ScoreKeeper>().goodend)
+                    {
+                        menubotton.SetActive(true);
+                        Time.timeScale = 0f;
+                    }   
+                }
+           }
+        }  
     }
 
     public void Resume()
@@ -24,6 +37,15 @@ public class MenuControl : MonoBehaviour
 
     public void Instruction(int id)
     {
+        if(id == 1)
+        {
+            inst = true;
+        }
+        else
+        {
+            inst = false;
+        }
         SceneManager.LoadScene(id);
+        Time.timeScale = 1f;
     }
 }

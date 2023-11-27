@@ -888,6 +888,7 @@ MonoBehaviour:
   tmp: {fileID: 495503752}
   coin_collection: {fileID: 495503754}
   win_audio: {fileID: 495503755}
+  goodend: 0
 --- !u!114 &495503752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,7 +1807,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 714.59985, y: 318.6}
+  m_AnchoredPosition: {x: 775, y: 378}
   m_SizeDelta: {x: 106.8, y: 106.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &607729236
@@ -1822,6 +1823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menubotton: {fileID: 1696163559}
+  inst: 0
 --- !u!114 &607729237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3323,6 +3325,7 @@ MonoBehaviour:
   tmp: {fileID: 1686640861}
   on_hit: {fileID: 1686640863}
   lose: {fileID: 1686640864}
+  badend: 0
 --- !u!114 &1686640861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3877,6 +3880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menubotton: {fileID: 1696163559}
+  inst: 0
 --- !u!114 &1877176337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4023,6 +4027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menubotton: {fileID: 1696163559}
+  inst: 0
 --- !u!114 &1968778219
 MonoBehaviour:
   m_ObjectHideFlags: 0
