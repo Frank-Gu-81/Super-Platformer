@@ -1,1 +1,1 @@
-# CS376-final-project
+# Super Platformer
